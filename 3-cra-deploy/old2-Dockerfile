@@ -1,0 +1,13 @@
+From node:14-alpine as builder
+
+WORKDIR /code
+
+# npm 没有缓存机制，yarn 有
+ADD package.json yarn.lock /code/
+RUN yarn
+
+ADD . /code
+RUN npm run build
+
+CMD npx serve -s build
+EXPOSE 3000
