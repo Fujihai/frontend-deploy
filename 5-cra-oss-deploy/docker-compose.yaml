@@ -1,0 +1,14 @@
+version: "3"
+services:
+  oss:
+    build:
+      context: .
+      dockerfile: oss.Dockerfile
+      args:
+        # 从宿主机的环境变量中获取参数，所以宿主机需要配置好相关信息
+        # 配置：https://help.aliyun.com/document_detail/120075.htm
+        - ACCESS_KEY_ID
+        - ACCESS_KEY_SECRET
+        - ENDPOINT=oss-cn-shenzhen.aliyuncs.com
+    ports:
+      - 8000:80
