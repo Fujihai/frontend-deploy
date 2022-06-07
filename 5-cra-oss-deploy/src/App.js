@@ -32,7 +32,7 @@ function About() {
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to React Router!</h1>
+      <h1>Welcome to React Router! & Hello World!</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
