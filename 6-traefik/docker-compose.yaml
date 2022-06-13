@@ -1,0 +1,11 @@
+# 默认创建的网络名称不一定是 traefik_default，默认名称会按照文件目录的方式来命名
+version: "3"
+services:
+  traefik:
+    image: traefik:v2.5
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

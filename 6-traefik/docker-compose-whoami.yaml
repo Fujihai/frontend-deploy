@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  # 改镜像会暴露出自身的 `header` 信息
+  whoami:
+    image: containous/whoami
+    labels:
+      # 设置Host 为 whoami.docker.localhost 进行域名访问
+      - "traefik.http.routers.whoami.rule=Host(`whoami.fujihai.local`)"
+
+# 使用已存在的 traefik 的 network
+networks:
+  default:
+    external:
+      name: 6-traefik_default
