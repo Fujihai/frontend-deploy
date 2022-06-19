@@ -7,7 +7,6 @@ const http = require("node:http");
 const arg = require("arg");
 const chalk = require("chalk");
 const path = require("node:path");
-const { stat } = require("node:fs");
 
 var config = {
   entry: "",
