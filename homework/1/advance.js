@@ -2,11 +2,11 @@
 const fs = require("node:fs");
 const fsp = require("node:fs/promises");
 const http = require("node:http");
+const path = require("node:path");
 
 // Packages
 const arg = require("arg");
 const chalk = require("chalk");
-const path = require("node:path");
 
 var config = {
   entry: "",
@@ -32,8 +32,6 @@ const args = arg({
   "--trailingSlash": Boolean,
   "--symlink": Boolean,
 });
-
-// const configFromArg = arg({});
 
 const resourceNotFound = (response, absolutePath) => {
   response.statusCode = 404;
@@ -77,8 +75,6 @@ const handler = async (request, response, config) => {
     // console.log(chalk.red(e));
   }
 
-  console.log("fileStat: ", absolutePath, fileStat);
-
   if (fileStat?.isDirectory()) {
     [fileStat, absolutePath] = await processDirectory(absolutePath);
   }
@@ -119,7 +115,3 @@ const startEndpoint = (port, config) => {
 };
 
 startEndpoint(args["--port"] || 3000, args);
-
-/**
- *
- */
