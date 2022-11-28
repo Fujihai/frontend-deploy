@@ -2,5 +2,6 @@ version: "3"
 services:
   app:
     build: .
+    # 宿主机端口：容器对外暴露的端口
     ports:
       - 3000:3000
