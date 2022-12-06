@@ -6,3 +6,6 @@ services:
       dockerfile: router.Dockerfile
     ports:
       - 4000:80
+    # 在此处使用 volumes 或者在指定的 Dockerfile 中添加 nginx.conf 都可以，保证路径是正确的就可以
+    # volumes:
+    #   - ./nginx.conf:/etc/nginx/conf.d/default.conf
