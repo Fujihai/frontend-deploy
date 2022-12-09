@@ -25,3 +25,6 @@ networks:
     external:
       # traefik 服务启动后，查看启动日志，关键 log：Creating 03_traefik_traefik_1 ... done
       name: 03_traefik_traefik_1
+
+# 主要流程：先启动 traefik 服务后，确认 traefik 的网络名称，修改 network 中的名称，再启动 whoami 服务。
+# 使用 curl 命令验证：curl -H Host:whoami.fujihai.local http://127.0.0.1
