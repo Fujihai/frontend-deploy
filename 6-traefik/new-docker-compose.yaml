@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # traefik 服务，创建服务后，可使用 docker network ls 查看已经创建的网络
+  # docker-compose up --build traefik
+  traefik:
+    image: traefik:v2.5
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  # whoami 服务
+  # docker-compose up --build whoami
+  whoami:
+    image: containous/whoami
+    labels:
+      # 设置 Host 为 whoami.docker.localhost 进行域名访问
+      # 服务发现过程，traefik 会读取容器的标签生成动态配置来更新路由规则
+      - "traefik.http.routers.whoami.rule=Host(`whoami.fujihai.local`)"
+
+networks:
+  outside:
+    external:
+      # traefik 服务启动后，查看启动日志，关键 log：Creating 03_traefik_traefik_1 ... done
+      name: 03_traefik_traefik_1
